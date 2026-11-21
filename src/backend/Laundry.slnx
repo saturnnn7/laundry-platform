@@ -2,4 +2,8 @@
   <Folder Name="/src/">
     <Project Path="src/Host/Host.csproj" />
   </Folder>
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Domain/Laundry.BuildingBlocks.Domain.csproj" />
+    <Project Path="tests/Laundry.Tests/Laundry.Tests.csproj" />
+  </Folder>
 </Solution>
