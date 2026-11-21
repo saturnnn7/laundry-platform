@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://laundry.example/schemas/command-ack-v1.json",
+  "title": "Command acknowledgement v1",
+  "type": "object",
+  "required": ["schemaVersion", "deviceId", "commandId", "status", "ts"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "deviceId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{3,64}$" },
+    "commandId": { "type": "string", "format": "uuid" },
+    "status": { "enum": ["ok", "rejected", "failed"] },
+    "reason": { "type": "string", "maxLength": 80 },
+    "ts": { "type": "string", "format": "date-time" }
+  }
+}

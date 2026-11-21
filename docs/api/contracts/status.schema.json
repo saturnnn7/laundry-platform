@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://laundry.example/schemas/status-v1.json",
+  "title": "Device status v1 (retained, also used as last will)",
+  "type": "object",
+  "required": ["state"],
+  "properties": {
+    "state": { "enum": ["online", "offline"] },
+    "deviceId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{3,64}$" },
+    "bootId": { "type": "string", "format": "uuid" },
+    "firmware": { "type": "string", "maxLength": 32 },
+    "ts": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "const": "online" } }, "required": ["state"] },
+      "then": { "required": ["deviceId", "bootId", "ts"] }
+    }
+  ]
+}

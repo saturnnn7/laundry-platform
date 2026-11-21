@@ -1,0 +1,37 @@
+# build output
+bin/
+obj/
+TestResults/
+.vs/
+*.user
+*.suo
+
+# python
+__pycache__/
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+
+# secrets and generated certificates: never commit
+.env
+!.env.example
+*.pem
+*.key
+*.pfx
+/certs/
+/secrets/
+
+# terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+
+# editors and OS
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

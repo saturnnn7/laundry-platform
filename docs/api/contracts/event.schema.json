@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://laundry.example/schemas/event-v1.json",
+  "title": "Device event v1",
+  "type": "object",
+  "required": ["schemaVersion", "deviceId", "bootId", "eventId", "ts", "type"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "deviceId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{3,64}$" },
+    "bootId": { "type": "string", "format": "uuid" },
+    "eventId": { "type": "string", "format": "uuid" },
+    "ts": { "type": "string", "format": "date-time" },
+    "type": { "enum": ["buttonPressed"] }
+  }
+}

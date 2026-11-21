@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://laundry.example/schemas/command-v1.json",
+  "title": "Command v1",
+  "type": "object",
+  "required": ["schemaVersion", "commandId", "command", "issuedAt", "expiresAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "commandId": { "type": "string", "format": "uuid" },
+    "command": { "enum": ["showCode", "showMessage", "unlock", "start", "stop", "lock", "setReportInterval"] },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "params": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "command": { "const": "showCode" } }, "required": ["command"] },
+      "then": {
+        "required": ["params"],
+        "properties": {
+          "params": {
+            "type": "object",
+            "required": ["code", "validUntil"],
+            "properties": {
+              "code": { "type": "string", "pattern": "^[2-9A-HJ-NP-Z]{6}$" },
+              "validUntil": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "command": { "const": "showMessage" } }, "required": ["command"] },
+      "then": {
+        "required": ["params"],
+        "properties": {
+          "params": {
+            "type": "object",
+            "required": ["text", "seconds"],
+            "properties": {
+              "text": { "type": "string", "minLength": 1, "maxLength": 40 },
+              "seconds": { "type": "integer", "minimum": 1, "maximum": 60 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "command": { "const": "unlock" } }, "required": ["command"] },
+      "then": {
+        "required": ["params"],
+        "properties": {
+          "params": {
+            "type": "object",
+            "required": ["displayName"],
+            "properties": {
+              "displayName": { "type": "string", "minLength": 1, "maxLength": 24 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "command": { "const": "start" } }, "required": ["command"] },
+      "then": {
+        "required": ["params"],
+        "properties": {
+          "params": {
+            "type": "object",
+            "required": ["programId", "minutes"],
+            "properties": {
+              "programId": { "type": "string", "maxLength": 64 },
+              "programName": { "type": "string", "maxLength": 40 },
+              "minutes": { "type": "integer", "minimum": 5, "maximum": 240 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "command": { "const": "setReportInterval" } }, "required": ["command"] },
+      "then": {
+        "required": ["params"],
+        "properties": {
+          "params": {
+            "type": "object",
+            "required": ["idleSec", "runningSec"],
+            "properties": {
+              "idleSec": { "type": "integer", "minimum": 5, "maximum": 600 },
+              "runningSec": { "type": "integer", "minimum": 5, "maximum": 600 }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

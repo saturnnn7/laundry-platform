@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://laundry.example/schemas/telemetry-v1.json",
+  "title": "Telemetry v1",
+  "type": "object",
+  "required": ["schemaVersion", "deviceId", "bootId", "seq", "ts", "kind", "metrics"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "deviceId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{3,64}$" },
+    "bootId": { "type": "string", "format": "uuid" },
+    "seq": { "type": "integer", "minimum": 0 },
+    "ts": { "type": "string", "format": "date-time" },
+    "kind": { "enum": ["washer", "dryer"] },
+    "metrics": {
+      "type": "object",
+      "required": ["phase", "doorClosed", "locked"],
+      "properties": {
+        "phase": { "enum": ["idle", "running", "finished", "fault"] },
+        "step": { "enum": ["fill", "wash", "rinse", "spin", "heat", "dry", "cool"] },
+        "programId": { "type": "string", "maxLength": 64 },
+        "remainingSec": { "type": "integer", "minimum": 0 },
+        "doorClosed": { "type": "boolean" },
+        "locked": { "type": "boolean" },
+        "vibration": { "type": "number", "minimum": 0 },
+        "currentA": { "type": "number", "minimum": 0 },
+        "temperatureC": { "type": "number" },
+        "faultCode": { "type": "string", "pattern": "^[A-Z0-9_]{2,16}$" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "phase": { "const": "fault" } }, "required": ["phase"] },
+          "then": { "required": ["faultCode"] }
+        }
+      ]
+    }
+  }
+}
