@@ -3,4 +3,7 @@
     <AssemblyName>Laundry.Host</AssemblyName>
     <RootNamespace>Laundry.Host</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BuildingBlocks/Api/Laundry.BuildingBlocks.Api.csproj" />
+  </ItemGroup>
 </Project>

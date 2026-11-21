@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Laundry.BuildingBlocks.Api</AssemblyName>
+    <RootNamespace>Laundry.BuildingBlocks.Api</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Domain/Laundry.BuildingBlocks.Domain.csproj" />
+  </ItemGroup>
+</Project>
