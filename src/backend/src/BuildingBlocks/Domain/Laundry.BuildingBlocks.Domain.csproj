@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Laundry.BuildingBlocks.Domain</AssemblyName>
+    <RootNamespace>Laundry.BuildingBlocks.Domain</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Laundry.Tests" />
+  </ItemGroup>
+</Project>
