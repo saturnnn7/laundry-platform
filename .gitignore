@@ -35,3 +35,8 @@ crash.log
 *.swp
 .DS_Store
 Thumbs.db
+
+# local settings (safety net)
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
