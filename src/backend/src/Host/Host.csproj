@@ -5,7 +5,9 @@
     <UserSecretsId>4cbf3a57-197a-4835-b884-84a627e14815</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Npgsql" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../BuildingBlocks/Api/Laundry.BuildingBlocks.Api.csproj" />
