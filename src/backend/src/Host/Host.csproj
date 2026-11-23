@@ -2,7 +2,11 @@
   <PropertyGroup>
     <AssemblyName>Laundry.Host</AssemblyName>
     <RootNamespace>Laundry.Host</RootNamespace>
+    <UserSecretsId>4cbf3a57-197a-4835-b884-84a627e14815</UserSecretsId>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../BuildingBlocks/Api/Laundry.BuildingBlocks.Api.csproj" />
   </ItemGroup>
